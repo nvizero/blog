@@ -8,7 +8,7 @@ createdb:
 	docker exec -it postgres createdb --username=root --owner=root blog
 
 dropdb:
-	docker exec -it postgres dropdb  --owner=root blog
+	docker exec -it postgres dropdb 'blog'  --owner=root
 
 migrateup:
 	migrate -path db/migration -database "postgresql://root:root@localhost:5432/blog?sslmode=disable" -verbose up

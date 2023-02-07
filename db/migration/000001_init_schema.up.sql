@@ -8,7 +8,7 @@ CREATE TABLE "users" (
 
 CREATE TABLE "cates" (
   "id" int PRIMARY KEY,
-  "name" varchar,
+  "name" varchar NOT NULL,
   "created_at" timestamp NOT NULL
 );
 
@@ -16,9 +16,8 @@ CREATE TABLE "posts" (
   "id" int PRIMARY KEY,
   "cate_id" int,
   "user_id" int,
-  "title" varchar,
-  "content" text,
-  "disable" int NOT NULL,
+  "title" varchar NOT NULL,
+  "content" text NOT NULL,
   "created_at" timestamp NOT NULL
 );
 

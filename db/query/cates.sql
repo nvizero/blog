@@ -5,11 +5,11 @@ INSERT INTO cates (
   $1
 ) RETURNING *;
 
--- name: GetPost :one
+-- name: GetCate :one
 SELECT * FROM cates
 WHERE id = $1 LIMIT 1;
 
--- name: ListPosts :many
+-- name: ListCates :many
 SELECT * FROM cates
 ORDER BY id
 LIMIT $1
