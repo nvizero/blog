@@ -52,7 +52,7 @@ SELECT id, cate_id, user_id, title, content, created_at FROM posts
 WHERE id = $1 LIMIT 1
 `
 
-func (q *Queries) GetPosts(ctx context.Context, id int32) (Post, error) {
+func (q *Queries) GetPosts(ctx context.Context, id int64) (Post, error) {
 	row := q.db.QueryRowContext(ctx, getPosts, id)
 	var i Post
 	err := row.Scan(

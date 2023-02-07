@@ -7,6 +7,7 @@ package db
 
 import (
 	"context"
+	"fmt"
 )
 
 const createCate = `-- name: CreateCate :one
@@ -16,14 +17,12 @@ INSERT INTO cates (
   $1
 ) RETURNING id, name, created_at
 `
-type CreateCateParams struct {
-	Name    string `json:"name"`
-}
 
-func (q *Queries) CreateCate(ctx context.Context, arg CreateCateParams) (Cate, error) {
-	row := q.db.QueryRowContext(ctx, createCate, arg.Name)
+func (q *Queries) CreateCate(ctx context.Context, name string) (Cate, error) {
+	row := q.db.QueryRowContext(ctx, createCate, name)
 	var i Cate
 	err := row.Scan(&i.ID, &i.Name, &i.CreatedAt)
+	fmt.Println(err,"qwe---------")
 	return i, err
 }
 
@@ -32,7 +31,7 @@ SELECT id, name, created_at FROM cates
 WHERE id = $1 LIMIT 1
 `
 
-func (q *Queries) GetCate(ctx context.Context, id int32) (Cate, error) {
+func (q *Queries) GetCate(ctx context.Context, id int64) (Cate, error) {
 	row := q.db.QueryRowContext(ctx, getCate, id)
 	var i Cate
 	err := row.Scan(&i.ID, &i.Name, &i.CreatedAt)

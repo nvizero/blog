@@ -10,13 +10,13 @@ import (
 )
 
 type Cate struct {
-	ID        int32     `json:"id"`
+	ID        int64     `json:"id"`
 	Name      string    `json:"name"`
 	CreatedAt time.Time `json:"created_at"`
 }
 
 type Post struct {
-	ID        int32         `json:"id"`
+	ID        int64         `json:"id"`
 	CateID    sql.NullInt32 `json:"cate_id"`
 	UserID    sql.NullInt32 `json:"user_id"`
 	Title     string        `json:"title"`
@@ -25,7 +25,7 @@ type Post struct {
 }
 
 type User struct {
-	ID        int32          `json:"id"`
+	ID        int64          `json:"id"`
 	Username  sql.NullString `json:"username"`
 	Password  string         `json:"password"`
 	CreatedAt time.Time      `json:"created_at"`

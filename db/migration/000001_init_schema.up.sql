@@ -1,24 +1,24 @@
 
 CREATE TABLE "users" (
-  "id" int PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "username" varchar,
   "password" varchar NOT NULL,
-  "created_at" timestamp NOT NULL
+  "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "cates" (
-  "id" int PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "name" varchar NOT NULL,
-  "created_at" timestamp NOT NULL
+  "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "posts" (
-  "id" int PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "cate_id" int,
   "user_id" int,
   "title" varchar NOT NULL,
   "content" text NOT NULL,
-  "created_at" timestamp NOT NULL
+  "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 
 ALTER TABLE "posts" ADD FOREIGN KEY ("cate_id") REFERENCES "cates" ("id");
