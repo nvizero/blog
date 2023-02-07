@@ -16,9 +16,12 @@ INSERT INTO cates (
   $1
 ) RETURNING id, name, created_at
 `
+type CreateCateParams struct {
+	Name    string `json:"name"`
+}
 
-func (q *Queries) CreateCate(ctx context.Context, name string) (Cate, error) {
-	row := q.db.QueryRowContext(ctx, createCate, name)
+func (q *Queries) CreateCate(ctx context.Context, arg CreateCateParams) (Cate, error) {
+	row := q.db.QueryRowContext(ctx, createCate, arg.Name)
 	var i Cate
 	err := row.Scan(&i.ID, &i.Name, &i.CreatedAt)
 	return i, err
