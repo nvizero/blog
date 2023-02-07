@@ -9,7 +9,7 @@ import (
 )
 
 type Querier interface {
-	CreateCate(ctx context.Context, name string) (Cate, error)
+	CreateCate(ctx context.Context, arg CreateCateParams) (Cate, error)
 	CreatePost(ctx context.Context, arg CreatePostParams) (Post, error)
 	CreateUsers(ctx context.Context, arg CreateUsersParams) (User, error)
 	GetCate(ctx context.Context, id int32) (Cate, error)

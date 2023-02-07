@@ -9,7 +9,7 @@ import (
 
 func createRandomCate(t *testing.T) Cate {
 	arg := CreateCateParams{
-		Name: "aa",
+		Name: "aa11",
 	}
 	cate, err := testQueries.CreateCate(context.Background(), arg)
 	require.NoError(t, err)
